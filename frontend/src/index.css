@@ -185,8 +185,28 @@
     animation: float 6s ease-in-out infinite;
   }
   
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+  
   .animate-glow {
     animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-slide-left {
+    animation: slideLeft 0.6s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out;
   }
   
   @keyframes float {
@@ -199,9 +219,38 @@
     to { box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.8); }
   }
   
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
   /* Gradient text */
   .text-gradient {
     @apply bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  /* Professional Button Utilities */
+  .btn-primary-glow {
+    @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 shadow-xl hover:shadow-2xl hover:shadow-indigo-500/25;
+  }
+  
+  .btn-gradient-border {
+    @apply border-2 border-transparent bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-border hover:from-indigo-600 hover:to-purple-600;
   }
   
   /* Grid patterns */

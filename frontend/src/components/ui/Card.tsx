@@ -24,8 +24,8 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div 
       className={clsx(
-        'bg-white rounded-xl shadow-soft border border-gray-200',
-        hover && 'hover:shadow-medium transition-shadow duration-200',
+        'card',
+        hover && 'card-hover',
         paddingClasses[padding],
         className
       )}
@@ -58,7 +58,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   as: Component = 'h3' 
 }) => (
   <Component className={clsx(
-    'text-lg font-semibold text-gray-900',
+    'text-xl font-bold text-slate-900',
     className
   )}>
     {children}
