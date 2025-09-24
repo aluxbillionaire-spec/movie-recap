@@ -77,3 +77,6 @@ coverage/
 # Cloudflare
 .wrangler/
 wrangler.toml
+
+# Submodules (problematic nested repos)
+colab/Real-ESRGAN/

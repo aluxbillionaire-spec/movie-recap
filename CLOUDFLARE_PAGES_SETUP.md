@@ -7,7 +7,7 @@ Your Movie Recap Service has been successfully configured for Cloudflare Pages d
 ### 📋 Deployment Configuration
 
 **Repository Settings:**
-- **REPO_URL**: `https://github.com/<your-username>/<your-repo-name>`
+- **REPO_URL**: `https://github.com/aluxbillionaire-spec/movie-recap.git`
 - **BRANCH**: `main`
 - **BUILD_COMMAND**: `cd frontend && npm ci && npm run build`
 - **PUBLISH_DIR**: `frontend/dist`

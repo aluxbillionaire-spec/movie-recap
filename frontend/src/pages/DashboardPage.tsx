@@ -8,13 +8,23 @@ import {
   HardDrive,
   TrendingUp,
   CheckCircle,
-  AlertCircle,
   Activity,
-  Upload
+  Upload,
+  Zap,
+  Globe2,
+  Sparkles,
+  Plus,
+  BarChart3,
+  AlertCircle,
+  ArrowUpRight,
+  Film,
+  Star,
+  Calendar,
+  Eye
 } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
@@ -95,104 +105,147 @@ const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl p-6 text-white">
-        <h1 className="text-3xl font-bold mb-2">{t('app.welcome')}</h1>
-        <p className="text-primary-100 mb-4">
-          {t('dashboard.welcomeMessage')}
-        </p>
-        <Button variant="secondary" size="lg">
-          <Play className="w-5 h-5 mr-2" />
-          {t('dashboard.createProject')}
-        </Button>
+    <div className="space-y-8 relative">
+      {/* Floating Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-primary-400/20 to-accent-400/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute -bottom-8 -left-8 w-96 h-96 bg-gradient-to-tr from-secondary-400/20 to-primary-400/20 rounded-full blur-3xl animate-float-delayed"></div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 rounded-2xl p-8 text-white overflow-hidden shadow-2xl">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
+        <div className="relative z-10">
+          <div className="flex items-center mb-4">
+            <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm mr-4">
+              <Zap className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-white to-primary-100 bg-clip-text text-transparent">
+                {t('app.welcome')}
+              </h1>
+              <p className="text-primary-100 text-lg opacity-90">
+                {t('dashboard.welcomeMessage')}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-4 mt-6">
+            <Button className="btn-primary-glow shadow-xl">
+              <Play className="w-5 h-5 mr-2" />
+              {t('dashboard.createProject')}
+            </Button>
+            <Button variant="outline" className="text-white border-white/30 hover:bg-white/10 backdrop-blur-sm">
+              <Upload className="w-5 h-5 mr-2" />
+              Upload Video
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {statsLoading ? (
-          <div className="col-span-full flex justify-center py-8">
+          <div className="col-span-full flex justify-center py-12">
             <LoadingSpinner size="lg" />
           </div>
         ) : (
           <>
-            <Card>
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.totalProjects')}</p>
-                    <p className="text-3xl font-bold text-gray-900">{stats?.total_projects}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl shadow-lg">
+                    <Users className="w-6 h-6 text-white" />
                   </div>
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Users className="w-6 h-6 text-primary-600" />
-                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-gray-400 group-hover:text-primary-500 transition-colors" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-600">{t('dashboard.stats.totalProjects')}</p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                    {stats?.total_projects}
+                  </p>
                 </div>
                 <div className="mt-4 flex items-center text-sm">
-                  <TrendingUp className="w-4 h-4 text-success-500 mr-1" />
-                  <span className="text-success-600">+12%</span>
-                  <span className="text-gray-500 ml-1">from last month</span>
+                  <div className="flex items-center px-2 py-1 bg-success-100 rounded-full">
+                    <TrendingUp className="w-3 h-3 text-success-600 mr-1" />
+                    <span className="text-success-700 font-medium">+12%</span>
+                  </div>
+                  <span className="text-gray-500 ml-2">vs last month</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-orange-50/30 backdrop-blur-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Active Jobs</p>
-                    <p className="text-3xl font-bold text-gray-900">{stats?.active_jobs}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-gradient-to-br from-warning-500 to-orange-600 rounded-xl shadow-lg">
+                    <Activity className="w-6 h-6 text-white" />
                   </div>
-                  <div className="w-12 h-12 bg-warning-100 rounded-lg flex items-center justify-center">
-                    <Activity className="w-6 h-6 text-warning-600" />
-                  </div>
+                  <div className="w-2 h-2 bg-warning-500 rounded-full animate-pulse"></div>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-600">Active Jobs</p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-warning-600 to-orange-600 bg-clip-text text-transparent">
+                    {stats?.active_jobs}
+                  </p>
                 </div>
                 <div className="mt-4 flex items-center text-sm">
-                  <AlertCircle className="w-4 h-4 text-warning-500 mr-1" />
-                  <span className="text-warning-600">2 pending review</span>
+                  <div className="flex items-center px-2 py-1 bg-warning-100 rounded-full">
+                    <AlertCircle className="w-3 h-3 text-warning-600 mr-1" />
+                    <span className="text-warning-700 font-medium">2 pending</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-green-50/30 backdrop-blur-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Completed Jobs</p>
-                    <p className="text-3xl font-bold text-gray-900">{stats?.completed_jobs}</p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-gradient-to-br from-success-500 to-green-600 rounded-xl shadow-lg">
+                    <CheckCircle className="w-6 h-6 text-white" />
                   </div>
-                  <div className="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-success-600" />
-                  </div>
+                  <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-600">Completed Jobs</p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-success-600 to-green-600 bg-clip-text text-transparent">
+                    {stats?.completed_jobs}
+                  </p>
                 </div>
                 <div className="mt-4 flex items-center text-sm">
-                  <Clock className="w-4 h-4 text-gray-400 mr-1" />
-                  <span className="text-gray-500">{stats?.processing_time_hours}h total</span>
+                  <Clock className="w-3 h-3 text-gray-400 mr-1" />
+                  <span className="text-gray-600 font-medium">{stats?.processing_time_hours}h</span>
+                  <span className="text-gray-500 ml-1">total time</span>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 bg-gradient-to-br from-white to-blue-50/30 backdrop-blur-sm">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">Storage Used</p>
-                    <p className="text-3xl font-bold text-gray-900">
-                      {stats?.storage_used_gb}
-                      <span className="text-lg text-gray-500">GB</span>
-                    </p>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-3 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl shadow-lg">
+                    <HardDrive className="w-6 h-6 text-white" />
                   </div>
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <HardDrive className="w-6 h-6 text-gray-600" />
+                  <div className="text-right">
+                    <p className="text-xs text-gray-500">Usage</p>
+                    <p className="text-sm font-semibold text-gray-700">{Math.round((stats?.storage_used_gb || 0) / 10)}%</p>
                   </div>
                 </div>
-                <div className="mt-4">
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-600">Storage Used</p>
+                  <p className="text-3xl font-bold bg-gradient-to-r from-gray-700 to-gray-600 bg-clip-text text-transparent">
+                    {stats?.storage_used_gb}
+                    <span className="text-lg text-gray-500 ml-1">GB</span>
+                  </p>
+                </div>
+                <div className="mt-4 space-y-2">
+                  <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                     <div 
-                      className="bg-primary-600 h-2 rounded-full" 
-                      style={{ width: `${(stats?.storage_used_gb || 0) / 1000 * 100}%` }}
+                      className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out" 
+                      style={{ width: `${Math.min((stats?.storage_used_gb || 0) / 10, 100)}%` }}
                     ></div>
                   </div>
-                  <p className="text-xs text-gray-500 mt-1">of 1TB limit</p>
+                  <p className="text-xs text-gray-500">of 1TB limit</p>
                 </div>
               </CardContent>
             </Card>
@@ -201,48 +254,72 @@ const DashboardPage: React.FC = () => {
       </div>
 
       {/* Recent Projects */}
-      <Card>
-        <CardHeader>
+      <Card className="overflow-hidden border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm">
+        <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
           <div className="flex items-center justify-between">
-            <CardTitle>Recent Projects</CardTitle>
-            <Button variant="outline" size="sm">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg shadow-lg">
+                <Film className="w-5 h-5 text-white" />
+              </div>
+              <CardTitle className="text-xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                Recent Projects
+              </CardTitle>
+            </div>
+            <Button variant="outline" size="sm" className="btn-gradient-border">
+              <Eye className="w-4 h-4 mr-2" />
               View All
             </Button>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           {projectsLoading ? (
-            <div className="flex justify-center py-8">
+            <div className="flex justify-center py-12">
               <LoadingSpinner />
             </div>
           ) : (
             <div className="space-y-4">
-              {recentProjects?.map((project) => (
-                <div key={project.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              {recentProjects?.map((project, index) => (
+                <div 
+                  key={project.id} 
+                  className="group flex items-center justify-between p-5 bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all duration-300 cursor-pointer"
+                >
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <Play className="w-5 h-5 text-primary-600" />
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary-500/25 transition-all duration-300">
+                        <Play className="w-6 h-6 text-white" />
+                      </div>
+                      {project.status === 'processing' && (
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-warning-500 rounded-full border-2 border-white animate-pulse"></div>
+                      )}
                     </div>
-                    <div>
-                      <h3 className="font-medium text-gray-900">{project.name}</h3>
-                      <p className="text-sm text-gray-500">
-                        Created {formatDate(project.created_at)}
-                      </p>
+                    <div className="space-y-1">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                        {project.name}
+                      </h3>
+                      <div className="flex items-center space-x-3 text-sm text-gray-500">
+                        <div className="flex items-center space-x-1">
+                          <Calendar className="w-3 h-3" />
+                          <span>Created {formatDate(project.created_at)}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
                     {project.status === 'processing' && (
-                      <div className="flex items-center space-x-2">
-                        <div className="w-20 bg-gray-200 rounded-full h-2">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-24 bg-gray-200 rounded-full h-2 overflow-hidden">
                           <div 
-                            className="bg-primary-600 h-2 rounded-full transition-all duration-300" 
+                            className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full transition-all duration-1000 ease-out" 
                             style={{ width: `${project.progress}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm text-gray-500">{project.progress}%</span>
+                        <span className="text-sm font-medium text-gray-600 min-w-[40px]">{project.progress}%</span>
                       </div>
                     )}
-                    {getStatusBadge(project.status)}
+                    <div className="flex items-center space-x-2">
+                      {getStatusBadge(project.status)}
+                      <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-primary-500 transition-colors" />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -252,23 +329,47 @@ const DashboardPage: React.FC = () => {
       </Card>
 
       {/* Quick Actions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+      <Card className="border-0 shadow-xl bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm">
+        <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-100">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg shadow-lg">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            <CardTitle className="text-xl bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+              Quick Actions
+            </CardTitle>
+          </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button variant="outline" size="lg" className="h-24 flex-col">
-              <Play className="w-8 h-8 mb-2" />
-              <span>New Project</span>
+            <Button 
+              className="h-28 flex-col bg-gradient-to-br from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white shadow-xl hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 border-0"
+            >
+              <div className="p-3 bg-white/20 rounded-xl mb-3 backdrop-blur-sm">
+                <Play className="w-8 h-8" />
+              </div>
+              <span className="font-semibold">New Project</span>
+              <span className="text-xs opacity-80">Start creating</span>
             </Button>
-            <Button variant="outline" size="lg" className="h-24 flex-col">
-              <Upload className="w-8 h-8 mb-2" />
-              <span>Upload Video</span>
+            <Button 
+              variant="outline" 
+              className="h-28 flex-col btn-gradient-border hover:bg-gradient-to-br hover:from-blue-50 hover:to-indigo-50 group transition-all duration-300"
+            >
+              <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl mb-3 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                <Upload className="w-8 h-8 text-white" />
+              </div>
+              <span className="font-semibold">Upload Video</span>
+              <span className="text-xs text-gray-500">Drag & drop</span>
             </Button>
-            <Button variant="outline" size="lg" className="h-24 flex-col">
-              <Activity className="w-8 h-8 mb-2" />
-              <span>View Jobs</span>
+            <Button 
+              variant="outline" 
+              className="h-28 flex-col btn-gradient-border hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50 group transition-all duration-300"
+            >
+              <div className="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl mb-3 shadow-lg group-hover:shadow-green-500/25 transition-all duration-300">
+                <Activity className="w-8 h-8 text-white" />
+              </div>
+              <span className="font-semibold">View Jobs</span>
+              <span className="text-xs text-gray-500">Monitor progress</span>
             </Button>
           </div>
         </CardContent>
