@@ -1,0 +1,71 @@
+# Windows-specific requirements with compatible versions
+
+# Core web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+alembic==1.12.1
+psycopg2-binary==2.9.9
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+cryptography==41.0.8
+
+# Async & Task Queue
+celery[redis]==5.3.4
+redis==5.0.1
+kombu==5.3.4
+
+# Data validation
+pydantic==2.5.1
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# Media processing (Windows compatible)
+ffmpeg-python==0.2.0
+opencv-python==4.8.1.78
+Pillow==10.1.0
+imageio==2.33.1
+imageio-ffmpeg==0.4.9
+
+# Machine Learning / AI (CPU versions for compatibility)
+sentence-transformers==2.2.2
+torch==2.1.1+cpu --find-links https://download.pytorch.org/whl/torch_stable.html
+torchvision==0.16.1+cpu --find-links https://download.pytorch.org/whl/torch_stable.html
+torchaudio==2.1.1+cpu --find-links https://download.pytorch.org/whl/torch_stable.html
+transformers==4.36.2
+numpy==1.24.4
+scikit-learn==1.3.2
+
+# Google Services
+google-api-python-client==2.110.0
+google-auth==2.25.2
+google-auth-oauthlib==1.1.0
+
+# HTTP client
+httpx==0.25.2
+aiohttp==3.9.1
+requests==2.31.0
+
+# Utilities
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+pytz==2023.3
+jinja2==3.1.2
+
+# File handling
+aiofiles==23.2.1
+PyPDF2==3.0.1
+python-docx==1.1.0
+
+# Monitoring & Logging
+prometheus-client==0.19.0
+structlog==23.2.0
+
+# Development tools
+python-magic-bin==0.4.14  # Windows binary version

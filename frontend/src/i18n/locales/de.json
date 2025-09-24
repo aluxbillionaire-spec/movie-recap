@@ -1,0 +1,1 @@
+{ "app": { "name": "Movie Recap Service", "welcome": "Willkommen zurück!" }, "auth": { "login": "Anmelden", "register": "Registrieren" }, "navigation": { "dashboard": "Dashboard", "projects": "Projekte" } }

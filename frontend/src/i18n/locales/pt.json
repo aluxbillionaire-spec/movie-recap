@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Serviço de Resumo de Filmes",
+    "welcome": "Bem-vindo de volta!",
+    "description": "Plataforma global multi-inquilino para resumos de filmes"
+  },
+  "navigation": {
+    "dashboard": "Painel",
+    "projects": "Projetos",
+    "analytics": "Análises",
+    "settings": "Configurações",
+    "logout": "Sair"
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registrar",
+    "email": "E-mail",
+    "password": "Senha",
+    "forgotPassword": "Esqueceu a senha?",
+    "rememberMe": "Lembrar de mim"
+  },
+  "dashboard": {
+    "welcomeMessage": "Gerencie seus projetos de resumo de filmes",
+    "createProject": "Criar Novo Projeto",
+    "stats": {
+      "totalProjects": "Total de Projetos",
+      "activeJobs": "Trabalhos Ativos",
+      "completedJobs": "Trabalhos Concluídos",
+      "storageUsed": "Armazenamento Usado"
+    },
+    "projectStatus": {
+      "completed": "Concluído",
+      "processing": "Processando",
+      "pending": "Pendente",
+      "failed": "Falhou"
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "createNew": "Criar Novo",
+    "upload": "Enviar",
+    "status": "Status",
+    "actions": "Ações"
+  },
+  "common": {
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "view": "Visualizar",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso"
+  }
+}

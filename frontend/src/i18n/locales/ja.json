@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "映画要約サービス",
+    "welcome": "おかえりなさい！",
+    "description": "映画要約のためのグローバルマルチテナントプラットフォーム"
+  },
+  "navigation": {
+    "dashboard": "ダッシュボード",
+    "projects": "プロジェクト",
+    "analytics": "分析",
+    "settings": "設定",
+    "logout": "ログアウト"
+  },
+  "auth": {
+    "login": "ログイン",
+    "register": "登録",
+    "email": "メール",
+    "password": "パスワード",
+    "forgotPassword": "パスワードを忘れましたか？",
+    "rememberMe": "ログイン状態を保持"
+  },
+  "dashboard": {
+    "welcomeMessage": "映画要約プロジェクトを管理する",
+    "createProject": "新しいプロジェクトを作成",
+    "stats": {
+      "totalProjects": "総プロジェクト数",
+      "activeJobs": "アクティブジョブ",
+      "completedJobs": "完了ジョブ",
+      "storageUsed": "使用ストレージ"
+    },
+    "projectStatus": {
+      "completed": "完了",
+      "processing": "処理中",
+      "pending": "保留中",
+      "failed": "失敗"
+    }
+  },
+  "projects": {
+    "title": "プロジェクト",
+    "createNew": "新規作成",
+    "upload": "アップロード",
+    "status": "ステータス",
+    "actions": "アクション"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "view": "表示",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功"
+  }
+}

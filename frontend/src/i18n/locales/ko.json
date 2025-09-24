@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "영화 요약 서비스",
+    "welcome": "다시 오신 것을 환영합니다!",
+    "description": "영화 요약을 위한 글로벌 멀티 테넌트 플랫폼"
+  },
+  "navigation": {
+    "dashboard": "대시보드",
+    "projects": "프로젝트",
+    "analytics": "분석",
+    "settings": "설정",
+    "logout": "로그아웃"
+  },
+  "auth": {
+    "login": "로그인",
+    "register": "회원가입",
+    "email": "이메일",
+    "password": "비밀번호",
+    "forgotPassword": "비밀번호를 잊으셨나요?",
+    "rememberMe": "로그인 유지"
+  },
+  "dashboard": {
+    "welcomeMessage": "영화 요약 프로젝트를 관리하세요",
+    "createProject": "새 프로젝트 만들기",
+    "stats": {
+      "totalProjects": "총 프로젝트",
+      "activeJobs": "활성 작업",
+      "completedJobs": "완료된 작업",
+      "storageUsed": "사용된 저장 공간"
+    },
+    "projectStatus": {
+      "completed": "완료",
+      "processing": "처리 중",
+      "pending": "대기 중",
+      "failed": "실패"
+    }
+  },
+  "projects": {
+    "title": "프로젝트",
+    "createNew": "새로 만들기",
+    "upload": "업로드",
+    "status": "상태",
+    "actions": "작업"
+  },
+  "common": {
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "편집",
+    "view": "보기",
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공"
+  }
+}

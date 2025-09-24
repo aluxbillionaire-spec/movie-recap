@@ -1,0 +1,510 @@
+openapi: 3.0.3
+info:
+  title: Movie Recap Pipeline API
+  description: Multi-tenant backend for automated long-form video recap generation
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@movierecap.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.movierecap.com/v1
+    description: Production server
+  - url: https://staging-api.movierecap.com/v1
+    description: Staging server
+  - url: http://localhost:8000/v1
+    description: Development server
+
+paths:
+  # Authentication Endpoints
+  /auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '409':
+          description: User already exists
+
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: Authenticate user and return tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid credentials
+
+  /auth/refresh:
+    post:
+      tags: [Authentication]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '200':
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+
+  # Project Management
+  /projects:
+    get:
+      tags: [Projects]
+      summary: List user projects
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Projects retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+
+    post:
+      tags: [Projects]
+      summary: Create new project
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectCreate'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  /projects/{project_id}:
+    get:
+      tags: [Projects]
+      summary: Get project details
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+
+  # Upload Management
+  /uploads/init:
+    post:
+      tags: [Uploads]
+      summary: Initialize resumable upload
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadInit'
+      responses:
+        '200':
+          description: Upload initialized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadSession'
+
+  /uploads/{upload_id}/complete:
+    post:
+      tags: [Uploads]
+      summary: Complete upload and trigger processing
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: upload_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Upload completed, processing started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+
+  # Job Management
+  /jobs/{job_id}:
+    get:
+      tags: [Jobs]
+      summary: Get job status and progress
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+
+  /jobs/{job_id}/actions:
+    post:
+      tags: [Jobs]
+      summary: Perform manual job actions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobAction'
+      responses:
+        '200':
+          description: Action completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+
+  # Output Management
+  /outputs/{job_id}/download:
+    get:
+      tags: [Outputs]
+      summary: Get temporary download link
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: format
+          in: query
+          schema:
+            type: string
+            enum: [mp4, webm]
+            default: mp4
+      responses:
+        '200':
+          description: Download link generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DownloadLink'
+
+  # User Management
+  /users/{user_id}/quota:
+    get:
+      tags: [Users]
+      summary: Get user quota information
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Quota information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQuota'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserRegistration:
+      type: object
+      required: [email, password, tenant_name]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+        tenant_name:
+          type: string
+          minLength: 3
+        first_name:
+          type: string
+        last_name:
+          type: string
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          default: bearer
+        expires_in:
+          type: integer
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        tenant_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+
+    ProjectCreate:
+      type: object
+      required: [title]
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        settings:
+          type: object
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        user_id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        settings:
+          type: object
+
+    ProjectList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+
+    UploadInit:
+      type: object
+      required: [project_id, file_type, file_size, filename]
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        file_type:
+          type: string
+          enum: [video, script]
+        file_size:
+          type: integer
+        filename:
+          type: string
+        content_type:
+          type: string
+
+    UploadSession:
+      type: object
+      properties:
+        upload_id:
+          type: string
+          format: uuid
+        drive_folder_id:
+          type: string
+        upload_url:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+
+    JobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [pending, processing, manual_review, completed, failed]
+
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        status:
+          type: string
+        progress:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        estimated_completion:
+          type: string
+          format: date-time
+
+    JobAction:
+      type: object
+      required: [action]
+      properties:
+        action:
+          type: string
+          enum: [approve_scenes, reject_scenes, retry, cancel]
+        payload:
+          type: object
+
+    DownloadLink:
+      type: object
+      properties:
+        download_url:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+        file_size:
+          type: integer
+
+    UserQuota:
+      type: object
+      properties:
+        storage_used:
+          type: integer
+        storage_limit:
+          type: integer
+        processing_hours_used:
+          type: number
+        processing_hours_limit:
+          type: number
+        jobs_this_month:
+          type: integer
+        jobs_limit_month:
+          type: integer
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        details:
+          type: object

@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Servizio di Riassunto Film",
+    "welcome": "Bentornato!",
+    "description": "Piattaforma globale multi-tenant per riassunti di film"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Progetti",
+    "analytics": "Analisi",
+    "settings": "Impostazioni",
+    "logout": "Esci"
+  },
+  "auth": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Password dimenticata?",
+    "rememberMe": "Ricordami"
+  },
+  "dashboard": {
+    "welcomeMessage": "Gestisci i tuoi progetti di riassunto film",
+    "createProject": "Crea Nuovo Progetto",
+    "stats": {
+      "totalProjects": "Progetti Totali",
+      "activeJobs": "Lavori Attivi",
+      "completedJobs": "Lavori Completati",
+      "storageUsed": "Spazio Utilizzato"
+    },
+    "projectStatus": {
+      "completed": "Completato",
+      "processing": "In Elaborazione",
+      "pending": "In Attesa",
+      "failed": "Fallito"
+    }
+  },
+  "projects": {
+    "title": "Progetti",
+    "createNew": "Crea Nuovo",
+    "upload": "Carica",
+    "status": "Stato",
+    "actions": "Azioni"
+  },
+  "common": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "view": "Visualizza",
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo"
+  }
+}

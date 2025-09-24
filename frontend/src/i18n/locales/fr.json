@@ -1,0 +1,60 @@
+{
+  "app": {
+    "name": "Service de Résumé de Films",
+    "tagline": "Création professionnelle de résumés de films simplifiée",
+    "welcome": "Bon retour !",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer",
+    "update": "Mettre à jour",
+    "view": "Voir",
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "refresh": "Actualiser",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "register": "S'inscrire",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "fullName": "Nom complet",
+    "welcome": "Bon retour !",
+    "getStarted": "Prêt à créer des résumés de films incroyables ? Commençons !",
+    "loginButton": "Se connecter",
+    "registerButton": "Créer un compte"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "projects": "Projets",
+    "uploads": "Téléchargements",
+    "jobs": "Tâches",
+    "settings": "Paramètres"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcomeMessage": "Prêt à créer des résumés de films incroyables ? Commençons !",
+    "createProject": "Créer un nouveau projet",
+    "stats": {
+      "totalProjects": "Projets totaux",
+      "activeJobs": "Tâches actives",
+      "completedJobs": "Tâches terminées",
+      "storageUsed": "Stockage utilisé"
+    }
+  }
+}

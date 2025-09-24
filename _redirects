@@ -1,0 +1,32 @@
+# SPA Routing - All routes should serve index.html for client-side routing
+/*    /index.html   200
+
+# API Redirects (for future Worker integration)
+/api/*    /api/:splat    200
+
+# Legacy redirects (if needed)
+/old-path/*    /new-path/:splat    301
+
+# Health check endpoint
+/health    /index.html    200
+
+# Specific redirects for common paths
+/dashboard    /index.html    200
+/projects    /index.html    200
+/uploads    /index.html    200
+/settings    /index.html    200
+/analytics    /index.html    200
+
+# Language-specific routes
+/en/*    /index.html    200
+/es/*    /index.html    200
+/fr/*    /index.html    200
+/de/*    /index.html    200
+/pt/*    /index.html    200
+/it/*    /index.html    200
+/ja/*    /index.html    200
+/ko/*    /index.html    200
+/zh/*    /index.html    200
+/hi/*    /index.html    200
+/ar/*    /index.html    200
+/ru/*    /index.html    200

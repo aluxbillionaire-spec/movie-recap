@@ -1,0 +1,301 @@
+{
+  "app": {
+    "name": "Servicio de Resúmenes de Películas",
+    "tagline": "Creación profesional de resúmenes de películas hecha fácil",
+    "welcome": "¡Bienvenido de vuelta!",
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "success": "¡Éxito!",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "view": "Ver",
+    "download": "Descargar",
+    "upload": "Subir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "refresh": "Actualizar",
+    "settings": "Configuración",
+    "help": "Ayuda",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "close": "Cerrar"
+  },
+
+  "auth": {
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "register": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "fullName": "Nombre Completo",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "rememberMe": "Recordarme",
+    "loginButton": "Iniciar Sesión",
+    "registerButton": "Crear Cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "signInHere": "Inicia sesión aquí",
+    "signUpHere": "Regístrate aquí",
+    "welcome": "¡Bienvenido de vuelta!",
+    "getStarted": "¿Listo para crear resúmenes increíbles de películas? ¡Comencemos!",
+    "termsAndConditions": "Acepto los Términos y Condiciones",
+    "privacyPolicy": "Política de Privacidad",
+    "errors": {
+      "invalidEmail": "Por favor ingresa una dirección de correo válida",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+      "passwordsNotMatch": "Las contraseñas no coinciden",
+      "fieldRequired": "Este campo es obligatorio",
+      "loginFailed": "Error de inicio de sesión. Verifica tus credenciales.",
+      "registrationFailed": "Error de registro. Inténtalo de nuevo.",
+      "emailAlreadyExists": "El correo electrónico ya existe"
+    }
+  },
+
+  "navigation": {
+    "dashboard": "Panel Principal",
+    "projects": "Proyectos",
+    "uploads": "Subidas",
+    "jobs": "Trabajos",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "billing": "Facturación",
+    "support": "Soporte"
+  },
+
+  "dashboard": {
+    "title": "Panel Principal",
+    "welcomeMessage": "¿Listo para crear resúmenes increíbles de películas? ¡Comencemos!",
+    "createProject": "Crear Nuevo Proyecto",
+    "stats": {
+      "totalProjects": "Proyectos Totales",
+      "activeJobs": "Trabajos Activos",
+      "completedJobs": "Trabajos Completados",
+      "storageUsed": "Almacenamiento Usado",
+      "processingTime": "Tiempo de Procesamiento",
+      "fromLastMonth": "del mes pasado",
+      "pendingReview": "pendiente de revisión",
+      "totalHours": "horas totales",
+      "ofLimit": "de {{limit}} límite"
+    },
+    "recentProjects": "Proyectos Recientes",
+    "quickActions": "Acciones Rápidas",
+    "actions": {
+      "newProject": "Nuevo Proyecto",
+      "uploadVideo": "Subir Video",
+      "viewJobs": "Ver Trabajos"
+    },
+    "projectStatus": {
+      "completed": "Completado",
+      "processing": "Procesando",
+      "pending": "Pendiente",
+      "failed": "Fallido"
+    },
+    "created": "Creado {{date}}"
+  },
+
+  "projects": {
+    "title": "Proyectos",
+    "create": "Crear Proyecto",
+    "createFirst": "Crear Primer Proyecto",
+    "noProjects": "No se encontraron proyectos",
+    "name": "Nombre del Proyecto",
+    "description": "Descripción",
+    "status": "Estado",
+    "resolution": "Resolución",
+    "quality": "Calidad",
+    "frameRate": "Velocidad de Fotogramas",
+    "watermark": "Protección de Marca de Agua",
+    "enableWatermark": "Habilitar protección de marca de agua",
+    "createdAt": "Creado",
+    "updatedAt": "Actualizado",
+    "actions": "Acciones",
+    "settings": "Configuración del Proyecto",
+    "delete": "Eliminar Proyecto",
+    "duplicate": "Duplicar",
+    "export": "Exportar",
+    "share": "Compartir",
+    "qualityOptions": {
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta",
+      "ultra": "Ultra"
+    },
+    "resolutionOptions": {
+      "1080p": "1080p (Full HD)",
+      "1440p": "1440p (2K)",
+      "4K": "4K (Ultra HD)"
+    },
+    "statusOptions": {
+      "active": "Activo",
+      "archived": "Archivado",
+      "processing": "Procesando"
+    }
+  },
+
+  "uploads": {
+    "title": "Subida de Archivos",
+    "dragDrop": "Arrastra y suelta archivos aquí, o haz clic para navegar",
+    "video": "Archivo de Video",
+    "script": "Archivo de Guión",
+    "supportedFormats": "Formatos soportados: {{formats}}",
+    "maxSize": "Tamaño máximo de archivo: {{size}}",
+    "uploading": "Subiendo...",
+    "uploaded": "Subido",
+    "failed": "Fallo en la subida",
+    "progress": "Progreso: {{percent}}%",
+    "selectProject": "Seleccionar Proyecto",
+    "uploadVideo": "Subir Video",
+    "uploadScript": "Subir Guión"
+  },
+
+  "jobs": {
+    "title": "Trabajos",
+    "type": "Tipo",
+    "status": "Estado",
+    "progress": "Progreso",
+    "priority": "Prioridad",
+    "created": "Creado",
+    "started": "Iniciado",
+    "completed": "Completado",
+    "actions": "Acciones",
+    "cancel": "Cancelar Trabajo",
+    "retry": "Reintentar Trabajo",
+    "viewDetails": "Ver Detalles",
+    "noJobs": "No se encontraron trabajos",
+    "types": {
+      "preprocessing": "Preprocesamiento de Video",
+      "transcription": "Transcripción de Audio",
+      "alignment": "Alineación de Guión",
+      "assembly": "Ensamblaje de Video",
+      "upscaling": "Escalado de Video",
+      "moderation": "Moderación de Contenido"
+    },
+    "statuses": {
+      "pending": "Pendiente",
+      "running": "Ejecutándose",
+      "completed": "Completado",
+      "failed": "Fallido",
+      "cancelled": "Cancelado",
+      "manualReview": "Revisión Manual"
+    },
+    "priorities": {
+      "low": "Baja",
+      "normal": "Normal",
+      "high": "Alta"
+    }
+  },
+
+  "settings": {
+    "title": "Configuración",
+    "profile": "Configuración de Perfil",
+    "account": "Configuración de Cuenta",
+    "preferences": "Preferencias",
+    "language": "Idioma",
+    "timezone": "Zona Horaria",
+    "notifications": "Notificaciones",
+    "security": "Seguridad",
+    "billing": "Facturación y Uso",
+    "api": "Claves API",
+    "integrations": "Integraciones",
+    "changePassword": "Cambiar Contraseña",
+    "currentPassword": "Contraseña Actual",
+    "newPassword": "Nueva Contraseña",
+    "confirmNewPassword": "Confirmar Nueva Contraseña",
+    "updateProfile": "Actualizar Perfil",
+    "deleteAccount": "Eliminar Cuenta",
+    "emailNotifications": "Notificaciones por Correo",
+    "pushNotifications": "Notificaciones Push",
+    "jobCompleted": "Trabajo Completado",
+    "projectShared": "Proyecto Compartido",
+    "systemMaintenance": "Mantenimiento del Sistema",
+    "weeklyReport": "Reporte Semanal"
+  },
+
+  "billing": {
+    "title": "Facturación y Uso",
+    "currentPlan": "Plan Actual",
+    "usage": "Uso",
+    "upgrade": "Actualizar Plan",
+    "downgrade": "Bajar Plan",
+    "billingHistory": "Historial de Facturación",
+    "paymentMethod": "Método de Pago",
+    "nextBilling": "Próxima Fecha de Facturación",
+    "storage": "Almacenamiento",
+    "processingHours": "Horas de Procesamiento",
+    "jobsPerMonth": "Trabajos por Mes",
+    "used": "Usado",
+    "remaining": "Restante",
+    "unlimited": "Ilimitado",
+    "plans": {
+      "free": "Gratuito",
+      "starter": "Inicial",
+      "professional": "Profesional",
+      "enterprise": "Empresarial"
+    }
+  },
+
+  "errors": {
+    "general": "Algo salió mal. Por favor intenta de nuevo.",
+    "network": "Error de red. Por favor verifica tu conexión.",
+    "unauthorized": "No estás autorizado para realizar esta acción.",
+    "forbidden": "Acceso denegado.",
+    "notFound": "Recurso no encontrado.",
+    "serverError": "Error del servidor. Por favor intenta más tarde.",
+    "timeout": "Se agotó el tiempo de espera. Por favor intenta de nuevo.",
+    "fileSize": "El tamaño del archivo excede el límite máximo.",
+    "fileType": "Tipo de archivo no soportado.",
+    "quotaExceeded": "Cuota excedida. Por favor actualiza tu plan.",
+    "invalidInput": "Entrada inválida. Por favor verifica tus datos."
+  },
+
+  "success": {
+    "projectCreated": "¡Proyecto creado exitosamente!",
+    "projectUpdated": "¡Proyecto actualizado exitosamente!",
+    "projectDeleted": "¡Proyecto eliminado exitosamente!",
+    "fileUploaded": "¡Archivo subido exitosamente!",
+    "profileUpdated": "¡Perfil actualizado exitosamente!",
+    "passwordChanged": "¡Contraseña cambiada exitosamente!",
+    "settingsSaved": "¡Configuración guardada exitosamente!",
+    "jobCancelled": "¡Trabajo cancelado exitosamente!",
+    "emailSent": "¡Correo enviado exitosamente!"
+  },
+
+  "confirm": {
+    "delete": "¿Estás seguro de que quieres eliminar este elemento?",
+    "cancel": "¿Estás seguro de que quieres cancelar este trabajo?",
+    "logout": "¿Estás seguro de que quieres cerrar sesión?",
+    "unsavedChanges": "Tienes cambios sin guardar. ¿Estás seguro de que quieres salir?"
+  },
+
+  "time": {
+    "now": "ahora",
+    "secondsAgo": "hace {{count}} segundo",
+    "secondsAgo_other": "hace {{count}} segundos",
+    "minutesAgo": "hace {{count}} minuto",
+    "minutesAgo_other": "hace {{count}} minutos",
+    "hoursAgo": "hace {{count}} hora",
+    "hoursAgo_other": "hace {{count}} horas",
+    "daysAgo": "hace {{count}} día",
+    "daysAgo_other": "hace {{count}} días",
+    "weeksAgo": "hace {{count}} semana",
+    "weeksAgo_other": "hace {{count}} semanas",
+    "monthsAgo": "hace {{count}} mes",
+    "monthsAgo_other": "hace {{count}} meses"
+  },
+
+  "pagination": {
+    "showing": "Mostrando {{from}} a {{to}} de {{total}}",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "page": "Página {{current}} de {{total}}"
+  }
+}

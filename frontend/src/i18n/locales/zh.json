@@ -1,0 +1,1 @@
+{ "app": { "name": "电影摘要服务", "welcome": "欢迎回来！" }, "auth": { "login": "登录", "register": "注册" }, "navigation": { "dashboard": "仪表板", "projects": "项目" } }

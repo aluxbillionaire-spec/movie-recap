@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "फिल्म सारांश सेवा",
+    "welcome": "वापसी पर स्वागत है!",
+    "description": "फिल्म सारांश के लिए वैश्विक मल्टी-टेनेंट प्लेटफॉर्म"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड",
+    "projects": "परियोजनाएं",
+    "analytics": "विश्लेषण",
+    "settings": "सेटिंग्स",
+    "logout": "लॉग आउट"
+  },
+  "auth": {
+    "login": "लॉग इन",
+    "register": "पंजीकरण",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "rememberMe": "मुझे याद रखें"
+  },
+  "dashboard": {
+    "welcomeMessage": "अपनी फिल्म सारांश परियोजनाओं का प्रबंधन करें",
+    "createProject": "नई परियोजना बनाएं",
+    "stats": {
+      "totalProjects": "कुल परियोजनाएं",
+      "activeJobs": "सक्रिय कार्य",
+      "completedJobs": "पूर्ण कार्य",
+      "storageUsed": "उपयोग किया गया भंडारण"
+    },
+    "projectStatus": {
+      "completed": "पूर्ण",
+      "processing": "प्रसंस्करण",
+      "pending": "लंबित",
+      "failed": "असफल"
+    }
+  },
+  "projects": {
+    "title": "परियोजनाएं",
+    "createNew": "नया बनाएं",
+    "upload": "अपलोड",
+    "status": "स्थिति",
+    "actions": "क्रियाएं"
+  },
+  "common": {
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "view": "देखें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता"
+  }
+}

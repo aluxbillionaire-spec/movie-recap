@@ -1,0 +1,715 @@
+{
+  "name": "Movie Recap Pipeline Orchestration",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "/webhook/upload-complete",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-upload-complete",
+      "name": "Upload Complete Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "upload-complete-hook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $node['Upload Complete Webhook'].json.backend_url }}/api/v1/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "httpMethod": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Upload Complete Webhook'].json.api_token }}"
+            },
+            {
+              "name": "Content-Type", 
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "project_id",
+              "value": "={{ $node['Upload Complete Webhook'].json.project_id }}"
+            },
+            {
+              "name": "job_type",
+              "value": "preprocess"
+            },
+            {
+              "name": "input_assets",
+              "value": "={{ $node['Upload Complete Webhook'].json.asset_ids }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "create-preprocessing-job",
+      "name": "Create Preprocessing Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['Create Preprocessing Job'].json.status }}",
+              "operation": "equal",
+              "value2": "created"
+            }
+          ]
+        }
+      },
+      "id": "check-job-creation",
+      "name": "Check Job Creation",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "wait-for-preprocessing",
+      "name": "Wait for Preprocessing",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [900, 180]
+    },
+    {
+      "parameters": {
+        "url": "={{ $node['Create Preprocessing Job'].json.backend_url }}/api/v1/jobs/{{ $node['Create Preprocessing Job'].json.job_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Upload Complete Webhook'].json.api_token }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "check-preprocessing-status",
+      "name": "Check Preprocessing Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1120, 180]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['Check Preprocessing Status'].json.status }}",
+              "operation": "equal",
+              "value2": "completed"
+            }
+          ]
+        }
+      },
+      "id": "check-preprocessing-complete",
+      "name": "Check Preprocessing Complete",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1340, 180]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $node['Check Preprocessing Status'].json.status }}",
+              "operation": "equal",
+              "value2": "failed"
+            }
+          ]
+        }
+      },
+      "id": "check-preprocessing-failed",
+      "name": "Check Preprocessing Failed", 
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $node['Upload Complete Webhook'].json.backend_url }}/api/v1/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "httpMethod": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Upload Complete Webhook'].json.api_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "project_id",
+              "value": "={{ $node['Upload Complete Webhook'].json.project_id }}"
+            },
+            {
+              "name": "job_type", 
+              "value": "transcription"
+            },
+            {
+              "name": "parent_job_id",
+              "value": "={{ $node['Create Preprocessing Job'].json.job_id }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "create-transcription-job",
+      "name": "Create Transcription Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1560, 80]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "upload",
+        "folderId": "={{ $env.DRIVE_UPSCALE_INPUTS_FOLDER }}",
+        "name": "upscale_job_{{ $node['Create Preprocessing Job'].json.job_id }}.json",
+        "inputData": "={{ JSON.stringify({\n  \"job_id\": $node['Create Preprocessing Job'].json.job_id,\n  \"project_id\": $node['Upload Complete Webhook'].json.project_id,\n  \"video_path\": $node['Check Preprocessing Status'].json.output_path,\n  \"webhook_url\": $env.N8N_WEBHOOK_URL + \"/webhook/upscale-complete\",\n  \"created_at\": new Date().toISOString()\n}) }}"
+      },
+      "id": "trigger-colab-upscaling",
+      "name": "Trigger Colab Upscaling",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [1780, 80],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "google-drive-credentials",
+          "name": "Google Drive Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "/webhook/upscale-complete",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-upscale-complete",
+      "name": "Upscale Complete Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 600],
+      "webhookId": "upscale-complete-hook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $node['Upscale Complete Webhook'].json.backend_url }}/api/v1/jobs/{{ $node['Upscale Complete Webhook'].json.job_id }}/actions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "httpMethod": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Upscale Complete Webhook'].json.api_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "action",
+              "value": "continue_processing"
+            },
+            {
+              "name": "upscaled_video_path",
+              "value": "={{ $node['Upscale Complete Webhook'].json.upscaled_video_path }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "continue-after-upscaling",
+      "name": "Continue After Upscaling",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 600]
+    },
+    {
+      "parameters": {
+        "path": "/webhook/job-failed",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-job-failed",
+      "name": "Job Failed Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 900],
+      "webhookId": "job-failed-hook"
+    },
+    {
+      "parameters": {
+        "channel": "#movie-recap-alerts",
+        "text": "🚨 Job Failed: {{ $node['Job Failed Webhook'].json.job_id }}\nProject: {{ $node['Job Failed Webhook'].json.project_id }}\nError: {{ $node['Job Failed Webhook'].json.error_message }}",
+        "otherOptions": {
+          "username": "Movie Recap Bot"
+        }
+      },
+      "id": "notify-job-failure",
+      "name": "Notify Job Failure",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [460, 900],
+      "credentials": {
+        "slackApi": {
+          "id": "slack-credentials",
+          "name": "Slack API Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "url": "={{ $node['Upload Complete Webhook'].json.backend_url }}/api/v1/users/{{ $node['Upload Complete Webhook'].json.user_id }}/notify",
+        "httpMethod": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Upload Complete Webhook'].json.api_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "job_failure"
+            },
+            {
+              "name": "job_id",
+              "value": "={{ $node['Job Failed Webhook'].json.job_id }}"
+            },
+            {
+              "name": "message",
+              "value": "Your video processing job has failed. Please check the error details and try again."
+            }
+          ]
+        }
+      },
+      "id": "notify-user-failure",
+      "name": "Notify User of Failure",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [680, 900]
+    },
+    {
+      "parameters": {
+        "path": "/webhook/job-complete",
+        "httpMethod": "POST",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-job-complete",
+      "name": "Job Complete Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 1200],
+      "webhookId": "job-complete-hook"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "url": "={{ $node['Job Complete Webhook'].json.backend_url }}/api/v1/users/{{ $node['Job Complete Webhook'].json.user_id }}/notify",
+        "httpMethod": "POST",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $node['Job Complete Webhook'].json.api_token }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "job_complete"
+            },
+            {
+              "name": "job_id",
+              "value": "={{ $node['Job Complete Webhook'].json.job_id }}"
+            },
+            {
+              "name": "download_url",
+              "value": "={{ $node['Job Complete Webhook'].json.download_url }}"
+            },
+            {
+              "name": "message",
+              "value": "Your video recap is ready! Click the link to download."
+            }
+          ]
+        }
+      },
+      "id": "notify-user-completion",
+      "name": "Notify User of Completion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [460, 1200]
+    },
+    {
+      "parameters": {
+        "channel": "#movie-recap-success",
+        "text": "✅ Job Completed: {{ $node['Job Complete Webhook'].json.job_id }}\nProject: {{ $node['Job Complete Webhook'].json.project_title }}\nDuration: {{ $node['Job Complete Webhook'].json.processing_duration }}s\nOutput Size: {{ $node['Job Complete Webhook'].json.output_size_mb }}MB",
+        "otherOptions": {
+          "username": "Movie Recap Bot"
+        }
+      },
+      "id": "notify-job-success",
+      "name": "Notify Job Success",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [680, 1200],
+      "credentials": {
+        "slackApi": {
+          "id": "slack-credentials",
+          "name": "Slack API Credentials"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"received\",\n  \"message\": \"Upload processing initiated\",\n  \"job_id\": \"{{ $node['Create Preprocessing Job'].json.job_id }}\"\n}"
+      },
+      "id": "respond-upload-webhook",
+      "name": "Respond Upload Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"received\",\n  \"message\": \"Upscaling complete, continuing processing\",\n  \"job_id\": \"{{ $node['Upscale Complete Webhook'].json.job_id }}\"\n}"
+      },
+      "id": "respond-upscale-webhook",
+      "name": "Respond Upscale Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [680, 600]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"received\",\n  \"message\": \"Failure notification sent\"\n}"
+      },
+      "id": "respond-failure-webhook",
+      "name": "Respond Failure Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 900]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"received\",\n  \"message\": \"Completion notification sent\"\n}"
+      },
+      "id": "respond-completion-webhook",
+      "name": "Respond Completion Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 1200]
+    }
+  ],
+  "connections": {
+    "Upload Complete Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create Preprocessing Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Preprocessing Job": {
+      "main": [
+        [
+          {
+            "node": "Check Job Creation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Job Creation": {
+      "main": [
+        [
+          {
+            "node": "Wait for Preprocessing",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond Upload Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Upload Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait for Preprocessing": {
+      "main": [
+        [
+          {
+            "node": "Check Preprocessing Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Preprocessing Status": {
+      "main": [
+        [
+          {
+            "node": "Check Preprocessing Complete",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Check Preprocessing Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Preprocessing Complete": {
+      "main": [
+        [
+          {
+            "node": "Create Transcription Job",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait for Preprocessing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Preprocessing Failed": {
+      "main": [
+        [
+          {
+            "node": "Notify Job Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Transcription Job": {
+      "main": [
+        [
+          {
+            "node": "Trigger Colab Upscaling",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upscale Complete Webhook": {
+      "main": [
+        [
+          {
+            "node": "Continue After Upscaling",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Continue After Upscaling": {
+      "main": [
+        [
+          {
+            "node": "Respond Upscale Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Failed Webhook": {
+      "main": [
+        [
+          {
+            "node": "Notify Job Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Job Failure": {
+      "main": [
+        [
+          {
+            "node": "Notify User of Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify User of Failure": {
+      "main": [
+        [
+          {
+            "node": "Respond Failure Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Complete Webhook": {
+      "main": [
+        [
+          {
+            "node": "Notify User of Completion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify User of Completion": {
+      "main": [
+        [
+          {
+            "node": "Notify Job Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify Job Success": {
+      "main": [
+        [
+          {
+            "node": "Respond Completion Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "timezone": "UTC",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "movie-recap-pipeline",
+  "tags": [
+    {
+      "createdAt": "2023-12-01T00:00:00.000Z",
+      "updatedAt": "2023-12-01T00:00:00.000Z",
+      "id": "movie-processing",
+      "name": "Movie Processing"
+    }
+  ]
+}

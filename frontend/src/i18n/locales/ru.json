@@ -1,0 +1,55 @@
+{
+  "app": {
+    "name": "Сервис Резюме Фильмов",
+    "welcome": "Добро пожаловать обратно!",
+    "description": "Глобальная мультитенантная платформа для резюме фильмов"
+  },
+  "navigation": {
+    "dashboard": "Панель управления",
+    "projects": "Проекты",
+    "analytics": "Аналитика",
+    "settings": "Настройки",
+    "logout": "Выйти"
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Регистрация",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "forgotPassword": "Забыли пароль?",
+    "rememberMe": "Запомнить меня"
+  },
+  "dashboard": {
+    "welcomeMessage": "Управляйте своими проектами резюме фильмов",
+    "createProject": "Создать новый проект",
+    "stats": {
+      "totalProjects": "Всего проектов",
+      "activeJobs": "Активные задачи",
+      "completedJobs": "Завершенные задачи",
+      "storageUsed": "Использованное хранилище"
+    },
+    "projectStatus": {
+      "completed": "Завершено",
+      "processing": "Обработка",
+      "pending": "Ожидание",
+      "failed": "Неудача"
+    }
+  },
+  "projects": {
+    "title": "Проекты",
+    "createNew": "Создать новый",
+    "upload": "Загрузить",
+    "status": "Статус",
+    "actions": "Действия"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "view": "Просмотр",
+    "loading": "Загрузка...",
+    "error": "Ошибка",
+    "success": "Успех"
+  }
+}

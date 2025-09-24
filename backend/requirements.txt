@@ -1,0 +1,89 @@
+# Movie Recap Pipeline - Python Dependencies
+
+# Web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy[asyncio]==2.0.23
+asyncpg==0.29.0
+alembic==1.12.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Async & Task Queue
+celery[redis]==5.3.4
+redis==5.0.1
+
+# Data validation
+pydantic==2.5.1
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# Media processing
+ffmpeg-python==0.2.0
+opencv-python-headless==4.8.1.78
+Pillow==10.1.0
+PySceneDetect==0.6.2
+librosa==0.10.1
+
+# Machine Learning / AI
+openai-whisper==20231117
+sentence-transformers==2.2.2
+torch==2.1.1
+torchvision==0.16.1
+torchaudio==2.1.1
+transformers==4.36.2
+numpy==1.24.4
+scikit-learn==1.3.2
+
+# Google Services
+google-api-python-client==2.110.0
+google-auth==2.25.2
+google-auth-oauthlib==1.1.0
+google-auth-httplib2==0.2.0
+
+# HTTP client
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Utilities
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+pytz==2023.3
+uuid==1.30
+jinja2==3.1.2
+markdown==3.5.1
+
+# Monitoring & Logging
+prometheus-client==0.19.0
+sentry-sdk[fastapi]==1.39.2
+structlog==23.2.0
+
+# File handling
+python-magic==0.4.27
+aiofiles==23.2.1
+PyPDF2==3.0.1
+python-docx==1.1.0
+
+# Testing (dev dependencies)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2
+factory-boy==3.3.0
+testcontainers==3.7.1
+
+# Development tools
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Deployment
+gunicorn==21.2.0
+docker==6.1.3

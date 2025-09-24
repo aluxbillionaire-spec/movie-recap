@@ -1,0 +1,301 @@
+{
+  "app": {
+    "name": "Movie Recap Service",
+    "tagline": "Professional movie recap creation made easy",
+    "welcome": "Welcome back!",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "view": "View",
+    "download": "Download",
+    "upload": "Upload",
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "settings": "Settings",
+    "help": "Help",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  },
+
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "fullName": "Full Name",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember me",
+    "loginButton": "Sign In",
+    "registerButton": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "signInHere": "Sign in here",
+    "signUpHere": "Sign up here",
+    "welcome": "Welcome back!",
+    "getStarted": "Ready to create amazing movie recaps? Let's get started.",
+    "termsAndConditions": "I agree to the Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "errors": {
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 8 characters long",
+      "passwordsNotMatch": "Passwords do not match",
+      "fieldRequired": "This field is required",
+      "loginFailed": "Login failed. Please check your credentials.",
+      "registrationFailed": "Registration failed. Please try again.",
+      "emailAlreadyExists": "Email already exists"
+    }
+  },
+
+  "navigation": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "uploads": "Uploads",
+    "jobs": "Jobs",
+    "settings": "Settings",
+    "profile": "Profile",
+    "billing": "Billing",
+    "support": "Support"
+  },
+
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeMessage": "Ready to create amazing movie recaps? Let's get started.",
+    "createProject": "Create New Project",
+    "stats": {
+      "totalProjects": "Total Projects",
+      "activeJobs": "Active Jobs",
+      "completedJobs": "Completed Jobs",
+      "storageUsed": "Storage Used",
+      "processingTime": "Processing Time",
+      "fromLastMonth": "from last month",
+      "pendingReview": "pending review",
+      "totalHours": "total hours",
+      "ofLimit": "of {{limit}} limit"
+    },
+    "recentProjects": "Recent Projects",
+    "quickActions": "Quick Actions",
+    "actions": {
+      "newProject": "New Project",
+      "uploadVideo": "Upload Video",
+      "viewJobs": "View Jobs"
+    },
+    "projectStatus": {
+      "completed": "Completed",
+      "processing": "Processing",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "created": "Created {{date}}"
+  },
+
+  "projects": {
+    "title": "Projects",
+    "create": "Create Project",
+    "createFirst": "Create First Project",
+    "noProjects": "No projects found",
+    "name": "Project Name",
+    "description": "Description",
+    "status": "Status",
+    "resolution": "Resolution",
+    "quality": "Quality",
+    "frameRate": "Frame Rate",
+    "watermark": "Watermark Protection",
+    "enableWatermark": "Enable watermark protection",
+    "createdAt": "Created",
+    "updatedAt": "Updated",
+    "actions": "Actions",
+    "settings": "Project Settings",
+    "delete": "Delete Project",
+    "duplicate": "Duplicate",
+    "export": "Export",
+    "share": "Share",
+    "qualityOptions": {
+      "low": "Low",
+      "medium": "Medium", 
+      "high": "High",
+      "ultra": "Ultra"
+    },
+    "resolutionOptions": {
+      "1080p": "1080p (Full HD)",
+      "1440p": "1440p (2K)",
+      "4K": "4K (Ultra HD)"
+    },
+    "statusOptions": {
+      "active": "Active",
+      "archived": "Archived",
+      "processing": "Processing"
+    }
+  },
+
+  "uploads": {
+    "title": "File Uploads",
+    "dragDrop": "Drag and drop files here, or click to browse",
+    "video": "Video File",
+    "script": "Script File",
+    "supportedFormats": "Supported formats: {{formats}}",
+    "maxSize": "Maximum file size: {{size}}",
+    "uploading": "Uploading...",
+    "uploaded": "Uploaded",
+    "failed": "Upload failed",
+    "progress": "Progress: {{percent}}%",
+    "selectProject": "Select Project",
+    "uploadVideo": "Upload Video",
+    "uploadScript": "Upload Script"
+  },
+
+  "jobs": {
+    "title": "Jobs",
+    "type": "Type",
+    "status": "Status",
+    "progress": "Progress",
+    "priority": "Priority",
+    "created": "Created",
+    "started": "Started",
+    "completed": "Completed",
+    "actions": "Actions",
+    "cancel": "Cancel Job",
+    "retry": "Retry Job",
+    "viewDetails": "View Details",
+    "noJobs": "No jobs found",
+    "types": {
+      "preprocessing": "Video Preprocessing",
+      "transcription": "Audio Transcription",
+      "alignment": "Script Alignment",
+      "assembly": "Video Assembly",
+      "upscaling": "Video Upscaling",
+      "moderation": "Content Moderation"
+    },
+    "statuses": {
+      "pending": "Pending",
+      "running": "Running",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled",
+      "manualReview": "Manual Review"
+    },
+    "priorities": {
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High"
+    }
+  },
+
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile Settings",
+    "account": "Account Settings",
+    "preferences": "Preferences",
+    "language": "Language",
+    "timezone": "Timezone",
+    "notifications": "Notifications",
+    "security": "Security",
+    "billing": "Billing & Usage",
+    "api": "API Keys",
+    "integrations": "Integrations",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
+    "updateProfile": "Update Profile",
+    "deleteAccount": "Delete Account",
+    "emailNotifications": "Email Notifications",
+    "pushNotifications": "Push Notifications",
+    "jobCompleted": "Job Completed",
+    "projectShared": "Project Shared",
+    "systemMaintenance": "System Maintenance",
+    "weeklyReport": "Weekly Report"
+  },
+
+  "billing": {
+    "title": "Billing & Usage",
+    "currentPlan": "Current Plan",
+    "usage": "Usage",
+    "upgrade": "Upgrade Plan",
+    "downgrade": "Downgrade Plan",
+    "billingHistory": "Billing History",
+    "paymentMethod": "Payment Method",
+    "nextBilling": "Next Billing Date",
+    "storage": "Storage",
+    "processingHours": "Processing Hours",
+    "jobsPerMonth": "Jobs per Month",
+    "used": "Used",
+    "remaining": "Remaining",
+    "unlimited": "Unlimited",
+    "plans": {
+      "free": "Free",
+      "starter": "Starter", 
+      "professional": "Professional",
+      "enterprise": "Enterprise"
+    }
+  },
+
+  "errors": {
+    "general": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "forbidden": "Access denied.",
+    "notFound": "Resource not found.",
+    "serverError": "Server error. Please try again later.",
+    "timeout": "Request timed out. Please try again.",
+    "fileSize": "File size exceeds the maximum limit.",
+    "fileType": "Unsupported file type.",
+    "quotaExceeded": "Quota exceeded. Please upgrade your plan.",
+    "invalidInput": "Invalid input. Please check your data."
+  },
+
+  "success": {
+    "projectCreated": "Project created successfully!",
+    "projectUpdated": "Project updated successfully!",
+    "projectDeleted": "Project deleted successfully!",
+    "fileUploaded": "File uploaded successfully!",
+    "profileUpdated": "Profile updated successfully!",
+    "passwordChanged": "Password changed successfully!",
+    "settingsSaved": "Settings saved successfully!",
+    "jobCancelled": "Job cancelled successfully!",
+    "emailSent": "Email sent successfully!"
+  },
+
+  "confirm": {
+    "delete": "Are you sure you want to delete this item?",
+    "cancel": "Are you sure you want to cancel this job?",
+    "logout": "Are you sure you want to logout?",
+    "unsavedChanges": "You have unsaved changes. Are you sure you want to leave?"
+  },
+
+  "time": {
+    "now": "now",
+    "secondsAgo": "{{count}} second ago",
+    "secondsAgo_other": "{{count}} seconds ago",
+    "minutesAgo": "{{count}} minute ago", 
+    "minutesAgo_other": "{{count}} minutes ago",
+    "hoursAgo": "{{count}} hour ago",
+    "hoursAgo_other": "{{count}} hours ago",
+    "daysAgo": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "weeksAgo": "{{count}} week ago",
+    "weeksAgo_other": "{{count}} weeks ago",
+    "monthsAgo": "{{count}} month ago",
+    "monthsAgo_other": "{{count}} months ago"
+  },
+
+  "pagination": {
+    "showing": "Showing {{from}} to {{to}} of {{total}}",
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page {{current}} of {{total}}"
+  }
+}
