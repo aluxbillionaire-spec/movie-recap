@@ -11,16 +11,13 @@ import {
   Activity,
   Upload,
   Zap,
-  Globe2,
-  Sparkles,
-  Plus,
-  BarChart3,
   AlertCircle,
   ArrowUpRight,
   Film,
   Star,
   Calendar,
-  Eye
+  Eye,
+  Sparkles
 } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
@@ -278,7 +275,7 @@ const DashboardPage: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {recentProjects?.map((project, index) => (
+              {recentProjects?.map((project) => (
                 <div 
                   key={project.id} 
                   className="group flex items-center justify-between p-5 bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all duration-300 cursor-pointer"

@@ -3,13 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { Mail, Lock, Eye, EyeOff, Zap, Globe2, Play, Shield, Sparkles } from 'lucide-react';
-
-import { useAuthStore } from '@/stores/auth';
+import { Card, CardContent } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
-import { Card, CardContent } from '@/components/ui/Card';
 import LanguageSelector from '@/components/ui/LanguageSelector';
+import { useAuthStore } from '@/stores/auth';
+import { 
+  Zap, 
+  Globe2, 
+  Mail, 
+  Lock, 
+  Eye, 
+  EyeOff, 
+  Play, 
+  Shield, 
+  Sparkles 
+} from 'lucide-react';
 
 interface LoginFormData {
   email: string;
@@ -144,15 +153,11 @@ const LoginPage: React.FC = () => {
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-                      <input
+                      <Input
                         type="email"
                         autoComplete="email"
-                        className={`w-full pl-12 pr-4 py-3 border rounded-xl text-sm transition-all duration-200 ${
-                          errors.email 
-                            ? 'border-red-300 focus:ring-red-500 bg-red-50' 
-                            : 'border-slate-300 focus:ring-indigo-500 focus:border-transparent bg-white'
-                        } focus:outline-none focus:ring-2 shadow-sm`}
                         placeholder="Enter your email"
+                        error={errors.email?.message}
                         {...register('email', {
                           required: 'Email is required',
                           pattern: {
@@ -162,9 +167,6 @@ const LoginPage: React.FC = () => {
                         })}
                       />
                     </div>
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                    )}
                   </div>
 
                   <div>
@@ -173,15 +175,11 @@ const LoginPage: React.FC = () => {
                     </label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
-                      <input
+                      <Input
                         type={showPassword ? 'text' : 'password'}
                         autoComplete="current-password"
-                        className={`w-full pl-12 pr-12 py-3 border rounded-xl text-sm transition-all duration-200 ${
-                          errors.password 
-                            ? 'border-red-300 focus:ring-red-500 bg-red-50' 
-                            : 'border-slate-300 focus:ring-indigo-500 focus:border-transparent bg-white'
-                        } focus:outline-none focus:ring-2 shadow-sm`}
                         placeholder="Enter your password"
+                        error={errors.password?.message}
                         {...register('password', {
                           required: 'Password is required',
                           minLength: {
@@ -202,9 +200,6 @@ const LoginPage: React.FC = () => {
                         )}
                       </button>
                     </div>
-                    {errors.password && (
-                      <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-                    )}
                   </div>
                 </div>
 
