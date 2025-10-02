@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: movierecap/laravel-app
+    container_name: movierecap-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./storage:/var/www/storage
+      - ./bootstrap/cache:/var/www/bootstrap/cache
+    networks:
+      - movierecap
+
+  nginx:
+    image: nginx:alpine
+    container_name: movierecap-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx:/etc/nginx/conf.d
+      - ./storage/logs:/var/log/nginx
+    networks:
+      - movierecap
+    depends_on:
+      - app
+
+  mysql:
+    image: mysql:8.0
+    container_name: movierecap-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_PASSWORD: secret
+      MYSQL_USER: movierecap
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - movierecap_mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - movierecap
+
+  redis:
+    image: redis:alpine
+    container_name: movierecap-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - movierecap
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: movierecap-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: secret
+    networks:
+      - movierecap
+    depends_on:
+      - mysql
+
+networks:
+  movierecap:
+    driver: bridge
+
+volumes:
+  movierecap_mysql_data:
+    driver: local

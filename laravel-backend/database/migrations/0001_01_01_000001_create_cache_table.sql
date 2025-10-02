@@ -1,0 +1,11 @@
+CREATE TABLE cache (
+    k_key VARCHAR(255) NOT NULL PRIMARY KEY,
+    value MEDIUMTEXT NOT NULL,
+    expiration INTEGER NOT NULL
+);
+
+CREATE TABLE cache_locks (
+    k_key VARCHAR(255) NOT NULL PRIMARY KEY,
+    owner VARCHAR(255) NOT NULL,
+    expiration INTEGER NOT NULL
+);
